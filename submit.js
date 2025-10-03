@@ -17,7 +17,8 @@ for (const id of ids) {
     if(metaExists & videoExists & torrentExists) {
         // load duration
         const duration = fs.readFileSync(`./out/${id}.meta.txt`, 'utf8');
-        console.log(duration)
+        const durationInt = parseInt(duration)
+        console.log(durationInt)
         // load torrent file
         const torrent = fs.readFileSync(`./out/${id}.torrent`, 'base64');
         console.log(torrent)
@@ -31,7 +32,7 @@ for (const id of ids) {
             },
             body: JSON.stringify({
                 torrent: torrent,
-                duration: duration,
+                duration: durationInt,
                 id: id,
             }),
         });
