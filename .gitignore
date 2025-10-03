@@ -3,3 +3,4 @@
 HandBrakeCLI.exe
 /out
 /in
+.env
