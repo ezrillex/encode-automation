@@ -1,0 +1,5 @@
+/node_modules
+/.idea
+HandBrakeCLI.exe
+/out
+/in

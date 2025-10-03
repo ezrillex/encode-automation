@@ -1,0 +1,15 @@
+{
+  "name": "encode-automation",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "private": true,
+  "dependencies": {
+    "create-torrent": "^6.1.0",
+    "handbrake-js": "^7.1.0"
+  }
+}
