@@ -9,6 +9,7 @@
   },
   "private": true,
   "dependencies": {
+    "@numairawan/video-duration": "^1.0.0",
     "create-torrent": "^6.1.0",
     "handbrake-js": "^7.1.0"
   }

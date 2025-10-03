@@ -1,6 +1,7 @@
 import createTorrent from "create-torrent";
 import handbrakeJs from "handbrake-js";
 import fs from "fs";
+import {videoDuration} from "@numairawan/video-duration";
 
 const files = fs.readdirSync('./in')
 console.log(files)
@@ -46,8 +47,13 @@ function encode(){
 
 
 
-function onComplete() {
+async function onComplete() {
     console.log("Conversión terminada!");
+
+    const duration = await videoDuration(`./out/${currentJob.id}.mp4`);
+    console.log(duration)
+    fs.writeFileSync(`./out/${currentJob.id}.meta.txt`, duration.seconds.toString(), "utf8");
+
     createTorrent(
         `./out/${currentJob.id}.mp4`,
         {
