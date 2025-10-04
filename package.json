@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "submit": "node --env-file=.env submit.js\n"
+    "encode": "node index.js",
+    "submit": "node --env-file=.env submit.js"
   },
   "private": true,
   "dependencies": {

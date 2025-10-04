@@ -28,7 +28,7 @@ for (const id of ids) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json", // important!
-                "Authorization": "Bearer devtoken123",
+                "Authorization": `Bearer ${process.env.api_token}`,
             },
             body: JSON.stringify({
                 torrent: torrent,
@@ -36,7 +36,7 @@ for (const id of ids) {
                 id: id,
             }),
         });
-        console.log(response.statusText);
+        console.log(id, response);
     }
     else{
         console.log('missing files for ', id)
