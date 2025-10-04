@@ -14,7 +14,7 @@ for (const id of ids) {
     const metaExists = fs.existsSync(`./out/${id}.meta.txt`)
     const videoExists = fs.existsSync(`./out/${id}.mp4`)
     const torrentExists = fs.existsSync(`./out/${id}.torrent`)
-    if(metaExists & videoExists & torrentExists) {
+    if(metaExists && videoExists && torrentExists) {
         // load duration
         const duration = fs.readFileSync(`./out/${id}.meta.txt`, 'utf8');
         const durationInt = parseInt(duration)
@@ -22,6 +22,10 @@ for (const id of ids) {
         // load torrent file
         const torrent = fs.readFileSync(`./out/${id}.torrent`, 'base64');
         console.log(torrent)
+        // get file size in KB
+        const fileStats = fs.statSync(`./out/${id}.mp4`);
+        const fileSizeKB = Math.ceil(fileStats.size / 1024) ;
+        console.log(fileSizeKB);
 
         // post to api
         const response = await fetch(process.env.api_url, {
@@ -34,6 +38,7 @@ for (const id of ids) {
                 torrent: torrent,
                 duration: durationInt,
                 id: id,
+                size: fileSizeKB,
             }),
         });
         console.log(id, response);
