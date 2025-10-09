@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { copyFile } from 'fs/promises';
 
 const files = fs.readdirSync('./out')
 console.log(files)
@@ -26,6 +27,14 @@ for (const id of ids) {
         const fileStats = fs.statSync(`./out/${id}.mp4`);
         const fileSizeKB = Math.ceil(fileStats.size / 1024) ;
         console.log(fileSizeKB);
+
+        // move file to file server location
+        try {
+            await copyFile(`./out/${id}.mp4`, `D:/${id}.mp4`);
+            console.log(`${id} File copied!`);
+        } catch (err) {
+            console.error(`${id} Copy failed:`, err);
+        }
 
         // post to api
         const response = await fetch(process.env.api_url, {
